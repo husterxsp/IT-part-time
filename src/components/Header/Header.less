@@ -1,0 +1,94 @@
+.header {
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, .2);
+    .header-content {
+        line-height: 60px;
+        width: 1000px;
+        height: 60px;
+        margin: 0 auto;
+        .logo {
+            font-size: 17px;
+            font-weight: 600;
+            float: left;
+            color: #00d8ff;
+            img {
+                float: left;
+                height: 50px;
+                margin-top: 5px;
+                margin-right: 10px;
+            }
+        }
+        .nav {
+            font-size: 14px;
+            float: left;
+            margin-left: 20px;
+            .list {
+                font-weight: 500;
+                float: left;
+                padding: 0 15px;
+                cursor: pointer;
+                -webkit-transition: .3s;
+                transition: .3s;
+                opacity: .5;
+                color: #2d3238;
+                &:hover,
+                &.active {
+                    opacity: 1;
+                    box-shadow: 0 0 2px rgba(0, 0, 0, .1);
+                }
+            }
+        }
+        .sign {
+            font-size: 14px;
+            float: right;
+            margin-left: 20px;
+            a {
+                font-weight: 500;
+                display: block;
+                float: left;
+                height: 100%;
+                padding: 0 15px;
+                cursor: pointer;
+                -webkit-transition: .3s;
+                transition: .3s;
+                opacity: .5;
+                color: #2d3238;
+                &:hover,
+                &.active {
+                    opacity: 1;
+                    box-shadow: 0 0 2px rgba(0, 0, 0, .1);
+                }
+            }
+        }
+        .me {
+            float: right;
+            overflow: hidden;
+            height: 100%;
+            margin-left: 20px;
+            .avatar-link {
+                margin-right: 20px;
+                opacity: .5;
+                color: #2d3238;
+                &:hover {
+                    opacity: 1;
+                }
+                &.active {
+                    opacity: 1;
+                }
+                .avatar {
+                    width: 40px;
+                    height: 40px;
+                    margin-right: .5em;
+                    vertical-align: middle;
+                    border-radius: 20px;
+                }
+            }
+        }
+    }
+}

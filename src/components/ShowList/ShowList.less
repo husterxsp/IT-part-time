@@ -1,0 +1,108 @@
+.show-list {
+    .list-item {
+        float: left;
+        width: 32%;
+        margin-right: 2%;
+        margin-bottom: 20px;
+        border-radius: 5px;
+        background-color: #fff;
+        box-shadow: 2px 2px 2px #aaa;
+        &:nth-child(3n) {
+            margin-right: 0;
+        }
+        .img {
+            position: relative;
+            overflow: hidden;
+            display: block;
+            height: 160px;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            background: no-repeat center/cover;
+            & > .introduction {
+                position: absolute;
+                top: 0;
+                left: 0;
+                display: none;
+                width: 100%;
+                height: 100%;
+                padding: 30px;
+                cursor: pointer;
+                color: #fff;
+                background-color: rgba(0, 0, 0, .5);
+                p {
+                    line-height: 2;
+                    display: -webkit-box;
+                    overflow: hidden;
+                    text-align: center;
+                    text-overflow: ellipsis;
+                    -webkit-line-clamp: 3;
+                    -webkit-box-orient: vertical;
+                }
+            }
+            &:hover > .introduction {
+                display: block;
+            }
+        }
+        .list-content {
+            .name {
+                height: 30px;
+                padding: 5px 10px;
+            }
+            .money {
+                font-size: 20px;
+                line-height: 40px;
+                float: left;
+                width: 40%;
+                height: 40px;
+                padding-left: 10px;
+            }
+            .deadline {
+                line-height: 40px;
+                float: left;
+                width: 60%;
+                height: 40px;
+                padding-right: 10px;
+                text-align: right;
+                color: #c7c7c7;
+            }
+            .roles-icons {
+                clear: both;
+                margin: 0 10px;
+                border-top: 1px solid #ededed;
+                color: #c7c7c7;
+                height: 40px;
+                line-height: 30px;
+                .roles {
+                    font-size: 12px;
+                    width: 70%;
+                    float: left;
+                    vertical-align: middle;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                }
+                .icons {
+                    width: 30%;
+                    float: left;
+                    text-align: right;
+                    span {
+                        margin-right: 5px;
+                    }
+                    i {
+                        margin-right: 3px;
+                    }
+                }
+            }
+        }
+    }
+    .show-more {
+        clear: both;
+        text-align: center;
+        padding: 15px 0;
+        color: #fff;
+        background: rgba(0, 0, 0, .3);
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}

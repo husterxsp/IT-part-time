@@ -1,0 +1,108 @@
+.project {
+    .left {
+        float: left;
+        overflow: hidden;
+        width: 73%;
+        border-radius: 5px;
+        box-shadow: 0 0 3px #aaa;
+        .title-container {
+            padding: 30px 25px;
+            border-top: 1px solid #fff;
+            border-bottom: 1px solid #ededed;
+            background: #f7fafc;
+            .title-row {
+                .title {
+                    font-size: 28px;
+                }
+                .status {
+                    float: right;
+                }
+            }
+            .desc-row {
+                margin-top: 10px;
+            }
+            .detail-row {
+                margin-top: 30px;
+                .detail-span {
+                    font-size: 14px;
+                    float: left;
+                    padding: 0 14px;
+                    color: #2d3238;
+                    border-right: 1px solid #d9d9d9;
+                    .name {
+                        margin-right: 8px;
+                        color: #979fa8;
+                    }
+                    &:nth-of-type(1) {
+                        padding-left: 0;
+                    }
+                    &:nth-of-type(3) {
+                        border: none;
+                    }
+                }
+                .apply {
+                    float: right;
+                    vertical-align: middle;
+                    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .2);
+                }
+            }
+        }
+        .content-container {
+            padding: 40px 25px 50px;
+            background-color: #fff;
+            & > p {
+                color: #464b52;
+            }
+            blockquote {
+                font-weight: 300;
+                position: relative;
+                margin: 1em 3em 1em 2em;
+                padding-left: 1em;
+                border-left: 1px solid #1abc9c;
+            }
+            p {
+                margin-bottom: .8em;
+            }
+        }
+    }
+    .right {
+        float: left;
+        width: 26%;
+        margin-left: 1%;
+        &>div {
+            border-radius: 5px;
+            box-shadow: 0 0 3px #aaa;
+            padding: 30px 25px 50px;
+            background-color: #fff;
+            margin-bottom: 10px;
+            .title {
+                font-size: 20px;
+            }
+            .list {
+                padding: 10px 0 6px;
+                a {
+                    color: inherit;
+                    float: left;
+                    width: 75%;
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+                .money {
+                    float: left;
+                    width: 25%;
+                    text-align: right;
+                    color: #979fa8;
+                }
+            }
+            .more {
+                float: right;
+                text-align: right;
+                color: #80cef1;
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+}
