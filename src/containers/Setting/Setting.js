@@ -5,9 +5,6 @@ import {
     Select,
     Checkbox,
     Radio,
-    InputNumber,
-    DatePicker,
-    Col,
     Button
 } from 'antd';
 import {
@@ -17,13 +14,13 @@ import {
     bindActionCreators
 } from 'redux';
 import * as authActions from '../../actions/authAction';
+import './Setting.less';
+
 const FormItem = Form.Item;
 const Option = Select.Option;
 const RadioGroup = Radio.Group;
 const createForm = Form.create;
 const CheckboxGroup = Checkbox.Group;
-
-import './Setting.less';
 
 @connect(
     state => ({
@@ -32,7 +29,7 @@ import './Setting.less';
 )
 export default class Setting extends React.Component {
     static propTypes = {
-        name: React.PropTypes.string,
+        name: React.PropTypes.string
     };
 
     constructor(props) {
@@ -40,16 +37,12 @@ export default class Setting extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
     componentDidMount() {
-        const {
-            dispatch
-        } = this.props;
+        const dispatch = this.props.dispatch;
         this.authActions = bindActionCreators(authActions, dispatch);
     }
     handleSubmit() {
-
         this.props.form.validateFields((errors, values) => {
             if (!!errors) {
-                console.log('Errors in form!!!');
                 return;
             }
             this.authActions.setInfo(Object.assign({}, values, {
@@ -59,32 +52,28 @@ export default class Setting extends React.Component {
     }
 
     render() {
-        const {
-            getFieldProps,
-            getFieldError,
-            isFieldValidating
-        } = this.props.form;
+        const getFieldProps = this.props.form.getFieldProps;
         const formItemLayout = {
             labelCol: {
                 span: 6
             },
             wrapperCol: {
                 span: 14
-            },
+            }
         };
         const nameProps = getFieldProps('name', {
             initialValue: this.props.auth.user.name,
             rules: [{
                 required: true,
                 message: '请填写用户名'
-            }],
+            }]
         });
         const phoneProps = getFieldProps('phone', {
             initialValue: this.props.auth.user.phone,
             rules: [{
                 required: true,
                 message: '请填写手机号'
-            }],
+            }]
         });
         return (
             <Form horizontal form={this.props.form} className="publish">
@@ -112,9 +101,7 @@ export default class Setting extends React.Component {
                 >
                     <Input {...phoneProps} autoComplete="off"/>
                 </FormItem>
-                <FormItem                   
-                    wrapperCol={{ span: 18, offset: 6 }}
-                >
+                <FormItem wrapperCol={{span: 18, offset: 6}}>
                     <Button type="primary" onClick={this.handleSubmit}>确定</Button>
                 </FormItem>
             </Form>

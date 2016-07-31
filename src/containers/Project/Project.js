@@ -5,11 +5,8 @@ import {
 from 'react-router';
 import {
     Button,
-    Row,
-    Col,
     message
 } from 'antd';
-
 import {
     bindActionCreators
 } from 'redux';
@@ -20,19 +17,22 @@ import * as projectActions from '../../actions/projectAction';
 import './project.less';
 
 @connect(
-    state => ({
-        auth: state.auth,
-        project: state.project
-    }),
-    dispatch => ({
-        projectActions: bindActionCreators(projectActions, dispatch)
-    })
+    state => {
+        return ({
+            auth: state.auth,
+            project: state.project
+        });
+    },
+    dispatch => {
+        return ({
+            projectActions: bindActionCreators(projectActions, dispatch)
+        });
+    }
 )
 export default class Project extends React.Component {
     static propTypes = {
-        name: React.PropTypes.string,
+        name: React.PropTypes.string
     };
-
     constructor(props) {
         super(props);
     }
@@ -52,23 +52,19 @@ export default class Project extends React.Component {
             projectID: this.props.project.detailProject._id,
             projectName: this.props.project.detailProject.name,
             projectType: this.props.project.detailProject.type
-        }
-
-        if (this.props.auth.user._id == this.props.project.detailProject.userID) {
-            message.error("不允许申请自己发布的项目！");
+        };
+        if (this.props.auth.user._id === this.props.project.detailProject.userID) {
+            message.error('不允许申请自己发布的项目！');
             return;
         }
-
         if (!value.userID) {
-            message.error("请先登录！");
+            message.error('请先登录！');
             return;
         }
         this.props.projectActions.apply(value);
     }
     render() {
-        const {
-            detailProject
-        } = this.props.project;
+        const detailProject = this.props.project.detailProject;
         detailProject.roles = detailProject.roles || [];
         const date = new Date(detailProject.deadline);
         return (
@@ -82,10 +78,10 @@ export default class Project extends React.Component {
                         </div>
                         <div className="desc-row">
                             招募：
-                            {   
-                                detailProject.roles.map((item, index)=>
+                            {
+                                detailProject.roles.map((item, index) =>
                                     <span className="type" key={index}>{item}&nbsp;</span>
-                                )                                
+                                )
                             }
                         </div>
                         <div className="detail-row clearfix">
@@ -127,7 +123,7 @@ export default class Project extends React.Component {
                 <div className="right">
                     <div className="relative">
                         <div className="title">相关项目</div>
-                        {[1,2,3,4,5].map((item)=>
+                        {[1, 2, 3, 4, 5].map(item =>
                             <div className="list clearfix" key={item}>
                                 <Link to='/' className=''>这里是相关项目项目</Link>
                                 <span className='money'>￥ 5000</span>
@@ -137,7 +133,7 @@ export default class Project extends React.Component {
                     </div>
                     <div className="recommend">
                         <div className="title">推荐项目</div>
-                        {[1,2,3,4,5].map((item)=>
+                        {[1, 2, 3, 4, 5].map(item =>
                             <div className="list clearfix" key={item}>
                                 <Link to='/' className=''>这里是推荐项目项目</Link>
                                 <span className='money'>￥ 5000</span>

@@ -2,14 +2,17 @@ import React from 'react';
 import {
     Button,
     Form,
-    Input,
-} from 'antd';
+    Input
+}
+from 'antd';
 import {
     connect
-} from 'react-redux';
+}
+from 'react-redux';
 import {
     bindActionCreators
-} from 'redux';
+}
+from 'redux';
 import * as authActions from '../../actions/authAction';
 import './login.less';
 
@@ -20,9 +23,11 @@ function noop() {
     return false;
 }
 @connect(
-    state => ({
-        auth: state.auth
-    })
+    state => {
+        return ({
+            auth: state.auth
+        });
+    }
 )
 class Login extends React.Component {
     static contextTypes = {
@@ -33,16 +38,13 @@ class Login extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
     componentDidMount() {
-        const {
-            dispatch
-        } = this.props;
+        const dispatch = this.props.dispatch;
         this.authActions = bindActionCreators(authActions, dispatch);
     }
     handleSubmit(e) {
         e.preventDefault();
         this.props.form.validateFields((errors, values) => {
-            if (!!errors) {
-                console.log('Errors in form!!!');
+            if (errors) {
                 return;
             }
             this.authActions.login(values, () => {
@@ -53,22 +55,21 @@ class Login extends React.Component {
     render() {
         const {
             getFieldProps,
-            getFieldError,
-            isFieldValidating
+            getFieldError
         } = this.props.form;
         const emailProps = getFieldProps('email', {
             validate: [{
                 rules: [{
                     required: true
-                }, ],
-                trigger: 'onBlur',
+                }],
+                trigger: 'onBlur'
             }, {
                 rules: [{
                     type: 'email',
                     message: '请输入正确的邮箱地址'
-                }, ],
-                trigger: ['onBlur', 'onChange'],
-            }],
+                }],
+                trigger: ['onBlur', 'onChange']
+            }]
         });
         const passwdProps = getFieldProps('password', {
             rules: [{
@@ -77,7 +78,7 @@ class Login extends React.Component {
                 message: '请填写密码'
             }, {
                 validator: true
-            }, ],
+            }]
         });
         const formItemLayout = {
             labelCol: {
@@ -85,7 +86,7 @@ class Login extends React.Component {
             },
             wrapperCol: {
                 span: 12
-            },
+            }
         };
         return (
             <Form horizontal form={this.props.form} className="register">
@@ -97,7 +98,6 @@ class Login extends React.Component {
                 >
                     <Input {...emailProps} type="email" autoComplete="off"/>
                 </FormItem>
-
                 <FormItem
                     {...formItemLayout}
                     label="密码"
@@ -107,7 +107,7 @@ class Login extends React.Component {
                         onContextMenu={noop} onPaste={noop} onCopy={noop} onCut={noop}
                     />
                 </FormItem>
-                <FormItem wrapperCol={{ span: 12, offset: 7 }}>
+                <FormItem wrapperCol={{span: 12, offset: 7}}>
                     <Button type="primary" onClick={this.handleSubmit}>登录</Button>
                 </FormItem>
             </Form>

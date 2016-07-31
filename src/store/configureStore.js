@@ -3,7 +3,8 @@ import createLogger from 'redux-logger';
 import {
     createStore,
     applyMiddleware
-} from 'redux';
+}
+from 'redux';
 import rootReducer from '../reducers/index';
 import createMiddle from '../middleware/index';
 

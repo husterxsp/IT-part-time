@@ -16,8 +16,8 @@ import {
 
 const initialState = {
     user: {
-        name: "",
-        _id: ""
+        name: '',
+        _id: ''
     }
 };
 

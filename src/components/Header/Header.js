@@ -11,7 +11,7 @@ import './Header.less';
 
 export default class Header extends React.Component {
     static propTypes = {
-        name: React.PropTypes.string,
+        name: React.PropTypes.string
     };
     static contextTypes = {
         router: React.PropTypes.object
@@ -36,27 +36,27 @@ export default class Header extends React.Component {
                         <IndexLink activeClassName="active" className="list" to="/">首页</IndexLink>
                         <Link activeClassName="active" className="list"  to="/about">关于</Link>
                     </div>
-                    {(()=>{
-                        if(user.name){
-                            return (
-                                <div className="me">
-                                    <Link activeClassName="active" className="avatar-link" to="/user">
-                                        <img src={require('../../static/img/avatar.png')} className="avatar" alt="avatar"/>
-                                        Hello, {user.name}
-                                    </Link>
-                                    <Button type="primary" onClick={this.logout}>退出登录</Button>
-                                </div>       
-                            )
-                        }
-                        else {
+                    {
+                        (() => {
+                            if (user.name) {
+                                return (
+                                    <div className="me">
+                                        <Link activeClassName="active" className="avatar-link" to="/user">
+                                            <img src={require('../../static/img/avatar.png')}
+                                                className="avatar" alt="avatar"/>
+                                            Hello, {user.name}
+                                        </Link>
+                                        <Button type="primary" onClick={this.logout}>退出登录</Button>
+                                    </div>);
+                            }
                             return (
                                 <div className="sign">
                                     <Link activeClassName="active" to="/auth/login">登录</Link>
                                     <Link activeClassName="active" to="/auth/register">注册</Link>
                                 </div>
-                            )
-                        }
-                    })()}
+                            );
+                        })()
+                    }
                 </div>
             </div>
         );

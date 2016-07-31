@@ -10,25 +10,27 @@ import {
 import {
     connect
 } from 'react-redux';
-
 import * as projectActions from '../../actions/projectAction';
-
 import './home.less';
 import ShowList from '../../components/ShowList/ShowList.js';
 
 const Option = Select.Option;
 
 @connect(
-    state => ({
-        projects: state.project.projects
-    }),
-    dispatch => ({
-        projectActions: bindActionCreators(projectActions, dispatch)
-    })
+    state => {
+        return ({
+            projects: state.project.projects
+        });
+    },
+    dispatch => {
+        return ({
+            projectActions: bindActionCreators(projectActions, dispatch)
+        });
+    }
 )
 export default class Home extends React.Component {
     static propTypes = {
-        name: React.PropTypes.string,
+        name: React.PropTypes.string
     }
 
     constructor(props) {
@@ -47,19 +49,19 @@ export default class Home extends React.Component {
     handleTypeClick(value) {
         this.setState({
             type: value
-        })
+        });
     }
     handleRoleClick(value) {
         this.setState({
             role: value
-        })
+        });
     }
     render() {
         const projects = this.props.projects || [];
         const settings = {
             dots: true,
             infinite: true,
-            speed: 500,
+            speed: 500
         };
         return (
             <div className="home">
@@ -70,7 +72,7 @@ export default class Home extends React.Component {
                     <div><img className="no1" src={require('../../static/img/no1.png')}/></div>
                 </Carousel>
                 <div className="filter">
-                    <Select defaultValue="所有类型" style={{ width: 120 }} onChange={this.handleTypeClick}>
+                    <Select defaultValue="所有类型" style={{width: 120}} onChange={this.handleTypeClick}>
                         <Option value="所有类型">所有类型</Option>
                         <Option value="Web网站">Web网站</Option>
                         <Option value="移动应用APP">移动应用APP</Option>
@@ -78,7 +80,7 @@ export default class Home extends React.Component {
                         <Option value="HTML5应用">HTML5应用</Option>
                         <Option value="其他">其他</Option>
                     </Select>
-                    <Select defaultValue="所有角色" style={{ width: 120 }} onChange={this.handleRoleClick}>
+                    <Select defaultValue="所有角色" style={{width: 120}} onChange={this.handleRoleClick}>
                         <Option value="所有角色">所有角色</Option>
                         <Option value="前端开发">前端开发</Option>
                         <Option value="后端开发">后端开发</Option>
@@ -90,12 +92,11 @@ export default class Home extends React.Component {
                     </Select>
                 </div>
                 {
-                    (()=>{
-                        if(projects.length){
-                            return <ShowList projects={projects} filter={this.state}/>
-                        }else {
-                            return <div style={{textAlign: "center",paddingTop:"60px"}}>暂无数据</div>
+                    (() => {
+                        if (projects.length) {
+                            return <ShowList projects={projects} filter={this.state}/>;
                         }
+                        return <div style={{textAlign: 'center', paddingTop: '60px'}}>暂无数据</div>;
                     })()
                 }
             </div>

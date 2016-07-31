@@ -12,13 +12,16 @@ import {
     Upload,
     Icon,
     message
-} from 'antd';
+}
+from 'antd';
 import {
     connect
-} from 'react-redux';
+}
+from 'react-redux';
 import {
     bindActionCreators
-} from 'redux';
+}
+from 'redux';
 const FormItem = Form.Item;
 const Option = Select.Option;
 const RadioGroup = Radio.Group;
@@ -101,7 +104,9 @@ export default class Publish extends React.Component {
     }
     handleUpload(info) {
         let fileList = info.fileList;
-        this.setState({ fileList });
+        this.setState({
+            fileList
+        });
     }
     render() {
         const {

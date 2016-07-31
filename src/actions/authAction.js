@@ -11,7 +11,7 @@ import {
     AUTH_SETTING_REQUEST,
     AUTH_SETTING_SUCCESS,
     AUTH_SETTING_FAILURE,
-    AUTH_LOGOUT,
+    AUTH_LOGOUT
 } from '../constants/authTypes';
 import ajax from './apiAction';
 import tokenDecode from 'jwt-decode';
@@ -25,16 +25,16 @@ function decodeUser(token) {
 
 export function logout() {
     window.localStorage.clear();
-    message.success("成功退出");
+    message.success('成功退出');
     return {
         type: AUTH_LOGOUT
-    }
+    };
 }
 
 export function init(callback) {
     return {
         types: [AUTH_INIT_REQUEST, AUTH_INIT_SUCCESS, AUTH_INIT_FAILURE],
-        promise: () => {
+        promise() {
             const token = localStorage.getItem('jwt');
             if (!token) {
                 return Promise.resolve({
@@ -51,12 +51,12 @@ export function init(callback) {
                 }
             });
         },
-        after: () => {
+        after() {
             if (typeof callback === 'function') {
                 callback();
             }
         },
-        onData: result => {
+        onData(result) {
             const {
                 token,
                 error,
@@ -72,7 +72,7 @@ export function init(callback) {
                 error
             };
         },
-        onError: error => {
+        onError(error) {
             const err = error.data.error || '初始化失败 ——网络好像出现了问题';
             return err;
         }
@@ -82,19 +82,19 @@ export function init(callback) {
 export function login(data, callback) {
     return {
         types: [AUTH_LOGIN_REQUEST, AUTH_LOGIN_SUCCESS, AUTH_LOGIN_FAILURE],
-        promise: () => {
+        promise() {
             return ajax({
                 url: '/login',
                 method: 'POST',
                 data: data
             });
         },
-        after: () => {
+        after() {
             if (typeof callback === 'function') {
                 callback();
             }
         },
-        onData: result => {
+        onData(result) {
             const {
                 token,
                 success
@@ -135,7 +135,7 @@ export function login(data, callback) {
                 });
             }
         },
-        onError: error => {
+        onError(error) {
             const msg = error.data.error;
             message.error(msg);
             return msg;
@@ -145,19 +145,19 @@ export function login(data, callback) {
 export function register(data, callback) {
     return {
         types: [AUTH_REGISTER_REQUEST, AUTH_REGISTER_SUCCESS, AUTH_REGISTER_FAILURE],
-        promise: () => {
+        promise() {
             return ajax({
                 url: '/register',
                 method: 'POST',
                 data: data
             });
         },
-        after: () => {
+        after() {
             if (typeof callback === 'function') {
                 callback();
             }
         },
-        onData: result => {
+        onData(result) {
             const {
                 success
             } = result.data;
@@ -166,7 +166,7 @@ export function register(data, callback) {
                 success
             }
         },
-        onError: error => {
+        onError(error) {
             const msg = error.data.error;
             message.error(msg);
             return msg;
@@ -175,22 +175,21 @@ export function register(data, callback) {
 }
 
 export function setInfo(data, callback) {
-    console.log("数据", data);
     return {
         types: [AUTH_SETTING_REQUEST, AUTH_SETTING_SUCCESS, AUTH_SETTING_FAILURE],
-        promise: () => {
+        promise() {
             return ajax({
                 url: '/setting',
                 method: 'POST',
                 data: data
             });
         },
-        after: () => {
+        after() {
             if (typeof callback === 'function') {
                 callback();
             }
         },
-        onData: result => {
+        onData(result) {
             const {
                 token,
                 success
@@ -202,10 +201,10 @@ export function setInfo(data, callback) {
             localStorage.setItem('jwt', token);
             return {
                 success,
-                user: user
+                user
             };
         },
-        onError: error => {
+        onError(error) {
             const msg = error.data.error;
             message.error(msg);
             return msg;

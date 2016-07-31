@@ -34,7 +34,6 @@ class Register extends React.Component {
         name: React.PropTypes.string,
     }
     static contextTypes = {
-        //?
         // router: React.PropTypes.func.isRequired
         router: React.PropTypes.object
     }
@@ -60,7 +59,6 @@ class Register extends React.Component {
         e.preventDefault();
         this.props.form.validateFields((errors, values) => {
             if (!!errors) {
-                console.log('Errors in form!!!');
                 return;
             }
             this.authActions.register(values, () => {
@@ -102,21 +100,21 @@ class Register extends React.Component {
                 required: true,
                 min: 5,
                 message: '用户名至少为 5 个字符'
-            }],
+            }]
         });
         const emailProps = getFieldProps('email', {
             validate: [{
                 rules: [{
                     required: true
-                }, ],
-                trigger: 'onBlur',
+                }],
+                trigger: 'onBlur'
             }, {
                 rules: [{
                     type: 'email',
                     message: '请输入正确的邮箱地址'
-                }, ],
+                }],
                 trigger: ['onBlur', 'onChange'],
-            }],
+            }]
         });
         const passwdProps = getFieldProps('password', {
             rules: [{
@@ -125,7 +123,7 @@ class Register extends React.Component {
                 message: '请填写密码'
             }, {
                 validator: this.checkPass
-            }, ],
+            }],
         });
         const rePasswdProps = getFieldProps('rePasswd', {
             rules: [{
@@ -134,7 +132,7 @@ class Register extends React.Component {
                 message: '请再次输入密码',
             }, {
                 validator: this.checkPass2,
-            }],
+            }]
         });
         const formItemLayout = {
             labelCol: {
@@ -142,7 +140,7 @@ class Register extends React.Component {
             },
             wrapperCol: {
                 span: 12
-            },
+            }
         };
         return (
             <Form horizontal form={this.props.form} className="register">

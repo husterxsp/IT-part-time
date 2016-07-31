@@ -42,7 +42,6 @@ const initialState = {
 };
 
 export default function project(state = initialState, actions = {}) {
-
     const {
         type,
         result,

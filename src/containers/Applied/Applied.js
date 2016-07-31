@@ -7,7 +7,6 @@ import {
     Rate
 } from 'antd';
 
-const confirm = Modal.confirm;
 import {
     bindActionCreators
 } from 'redux';
@@ -17,6 +16,8 @@ import {
 
 import * as projectActions from '../../actions/projectAction';
 import './Applied.less';
+
+const confirm = Modal.confirm;
 
 @connect(
     state => ({
@@ -29,7 +30,7 @@ import './Applied.less';
 )
 export default class Applied extends React.Component {
     static propTypes = {
-        name: React.PropTypes.string,
+        name: React.PropTypes.string
     };
 
     constructor(props) {
@@ -47,8 +48,7 @@ export default class Applied extends React.Component {
             userID: userID,
             publisherID: publisherID,
             projectID: this.props.params._id
-        }
-        console.log(query);
+        };
         this.props.projectActions.updateApplierList(query);
     }
     render() {
@@ -73,17 +73,13 @@ export default class Applied extends React.Component {
         let pagination = {
             total: data.length,
             showSizeChanger: true,
-            onShowSizeChange(current, pageSize) {
-                console.log('Current: ', current, '; PageSize: ', pageSize);
-            },
-            onChange(current) {
-                console.log('Current: ', current);
-            },
+            onShowSizeChange(current, pageSize) {},
+            onChange(current) {},
         };
         let columns = [{
             title: '项目名',
             dataIndex: 'projectName',
-            key: 'projectName',
+            key: 'projectName'
         }, {
             title: '项目类型',
             dataIndex: 'projectType',

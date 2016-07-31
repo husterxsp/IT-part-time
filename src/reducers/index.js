@@ -6,7 +6,6 @@ import project from './projectReducer';
 
 const rootReducer = combineReducers({
     auth,
-    project,
-})
-
-export default rootReducer
+    project
+});
+export default rootReducer;

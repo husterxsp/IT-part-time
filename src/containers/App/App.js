@@ -1,28 +1,26 @@
 import React from 'react';
 import {
-    Link
-}
-from 'react-router';
-import {
     connect
 } from 'react-redux';
 import {
     bindActionCreators
 } from 'redux';
 import * as authActions from '../../actions/authAction';
-
 import Header from '../../components/Header/Header.js';
 import Footer from '../../components/Footer/Footer.js';
-
 import './App.less';
 
 @connect(
-    state => ({
-        auth: state.auth
-    }),
-    dispatch => ({
-        authActions: bindActionCreators(authActions, dispatch),
-    })
+    state => {
+        return ({
+            auth: state.auth
+        });
+    },
+    dispatch => {
+        return ({
+            authActions: bindActionCreators(authActions, dispatch)
+        });
+    }
 )
 export default class App extends React.Component {
     componentDidMount() {
@@ -31,15 +29,14 @@ export default class App extends React.Component {
     render() {
         return (
             <div className="app-content">
-                <Header 
-                    user={this.props.auth.user} 
+                <Header user={this.props.auth.user}
                     logout={this.props.authActions.logout}
                     login={this.props.authActions.login}
                 />
-                <div className="container">          
+                <div className="container">
                     {this.props.children}
                 </div>
-                <Footer /> 
+                <Footer />
             </div>
         );
     }

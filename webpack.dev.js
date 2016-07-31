@@ -1,21 +1,21 @@
 const webpack = require('webpack');
 const path = require('path');
-const node_modules_dir = path.join(__dirname, 'node_modules');
+// const node_modules_dir = path.join(__dirname, 'node_modules');
 
 module.exports = {
     entry: [
         'webpack/hot/dev-server',
-        'webpack-dev-server/client?http://localhost:8080/',
+        'webpack-dev-server/client?http://127.0.0.1:8080/',
         path.resolve(__dirname, 'src/index.js')
     ],
     output: {
         path: path.resolve(__dirname, 'build'),
         filename: 'bundle.js',
-        publicPath: "/build/",
+        publicPath: '/build/'
     },
     resolve: {
         extensions: ['', '.js', '.jsx', '.less', '.css'],
-        alias: {},
+        alias: {}
     },
     postcss: [require('autoprefixer')],
     module: {

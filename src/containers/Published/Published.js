@@ -4,17 +4,21 @@ import {
     Icon,
     pagination,
     Modal
-} from 'antd';
+}
+from 'antd';
 const confirm = Modal.confirm;
 import {
     bindActionCreators
-} from 'redux';
+}
+from 'redux';
 import {
     connect
-} from 'react-redux';
+}
+from 'react-redux';
 import {
     Link
-} from 'react-router';
+}
+from 'react-router';
 
 import * as projectActions from '../../actions/projectAction';
 import './Published.less';

@@ -7,27 +7,29 @@ import {
 } from 'react-redux';
 import * as projectActions from '../../actions/projectAction';
 import {
-    Button,
     Table,
     Rate
 } from 'antd';
 import './ApplierList.less';
 
 @connect(
-    state => ({
-        auth: state.auth,
-        project: state.project,
-        applyList: state.applyList
-    }),
-    dispatch => ({
-        projectActions: bindActionCreators(projectActions, dispatch)
-    })
+    state => {
+        return ({
+            auth: state.auth,
+            project: state.project,
+            applyList: state.applyList
+        });
+    },
+    dispatch => {
+        return ({
+            projectActions: bindActionCreators(projectActions, dispatch)
+        });
+    }
 )
 export default class ApplierList extends React.Component {
     static propTypes = {
-        name: React.PropTypes.string,
+        name: React.PropTypes.string
     };
-
     constructor(props) {
         super(props);
     }
@@ -45,7 +47,7 @@ export default class ApplierList extends React.Component {
             _id: id,
             status: status,
             projectID: this.props.params._id
-        }
+        };
         this.props.projectActions.updateApplierList(value);
     }
     handleComment(id, userID, value) {
@@ -59,9 +61,7 @@ export default class ApplierList extends React.Component {
     }
 
     render() {
-        let {
-            applyList
-        } = this.props.project;
+        let applyList = this.props.project.applyList;
         const data = [];
         applyList = applyList || [];
         for (let i = applyList.length - 1; i >= 0; i--) {
@@ -78,43 +78,47 @@ export default class ApplierList extends React.Component {
         }
         const pagination = {
             total: data.length,
-            onShowSizeChange(current, pageSize) {
-                console.log('Current: ', current, '; PageSize: ', pageSize);
-            },
-            onChange(current) {
-                console.log('Current: ', current);
-            },
+            onShowSizeChange(current, pageSize) {},
+            onChange(current) {}
         };
         const columns = [{
             title: '项目名',
             dataIndex: 'projectName',
-            key: 'projectName',
+            key: 'projectName'
         }, {
             title: '申请者',
             dataIndex: 'userName',
-            key: 'userName',
+            key: 'userName'
         }, {
             title: '申请者电话',
             dataIndex: 'userPhone',
-            key: 'phone',
+            key: 'phone'
         }, {
             title: '申请状态',
             dataIndex: 'status',
-            key: 'status',
+            key: 'status'
         }, {
             title: '操作',
             key: 'operation',
-            render: (text, record) => (
-                <span>
-                    <a href="#" onClick={this.updateApplierList.bind(this,record._id,'同意')}>同意</a>
-                    <span className="ant-divider"></span>
-                    <a href="#" onClick={this.updateApplierList.bind(this,record._id,'回绝')}>回绝</a>
-                </span>
-            ),
+            render(text, record) {
+                return (
+                    <span>
+                        <a href="#" onClick={this.updateApplierList.bind(this, record._id, '同意')}>同意</a>
+                        <span className="ant-divider"></span>
+                        <a href="#" onClick={this.updateApplierList.bind(this, record._id, '回绝')}>回绝</a>
+                    </span>
+                );
+            }
         }, {
             title: '评价申请者',
-            'dataIndex': 'comment',
-            render: (text, record) => (<Rate onChange={this.handleComment.bind(this, record._id,record.userID)} value={record.comment}/>)
+            dataIndex: 'comment',
+            render(text, record) {
+                return (
+                    <Rate
+                        onChange={this.handleComment.bind(this, record._id, record.userID)}
+                        value={record.comment}/>
+                );
+            }
         }];
         return (
             <div className="applierlist">
