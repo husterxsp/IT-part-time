@@ -100,7 +100,7 @@ export default class ApplierList extends React.Component {
         }, {
             title: '操作',
             key: 'operation',
-            render(text, record) {
+            render: (text, record) => {
                 return (
                     <span>
                         <a href="#" onClick={this.updateApplierList.bind(this, record._id, '同意')}>同意</a>
@@ -112,7 +112,7 @@ export default class ApplierList extends React.Component {
         }, {
             title: '评价申请者',
             dataIndex: 'comment',
-            render(text, record) {
+            render: (text, record) => {
                 return (
                     <Rate
                         onChange={this.handleComment.bind(this, record._id, record.userID)}

@@ -27,7 +27,7 @@ const CheckboxGroup = Checkbox.Group;
         auth: state.auth
     })
 )
-export default class Setting extends React.Component {
+class Setting extends React.Component {
     static propTypes = {
         name: React.PropTypes.string
     };

@@ -38,7 +38,7 @@ import './Publish.less';
         data: state.data
     })
 )
-export default class Publish extends React.Component {
+class Publish extends React.Component {
     static propTypes = {
         name: React.PropTypes.string,
     };
